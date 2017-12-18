@@ -26,6 +26,11 @@ configure_aws_cli() {
 tag_and_push_images() {
   echo "Tagging and pushing images..."
   echo "Region: ${ECS_REGION}"
+  echo "AWS_ACCOUNT_ID: ${AWS_ACCOUNT_ID}"
+  echo "AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}"
+  echo "AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}"
+  echo "AWS_USERNAME: ${AWS_USERNAME}"
+  aws ecr get-login --region "${ECS_REGION}"
   $(aws ecr get-login --region "${ECS_REGION}")
   # tag
   docker tag ${IMAGE_BASE}_users-db-review ${ECR_URI}/${NAMESPACE}/users-db-review:${TAG}
